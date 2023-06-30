@@ -1,6 +1,7 @@
 "use client";
 
 import Input from "@/app/components/input/Input";
+import Button from "@/app/components/Button";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, set, useForm } from "react-hook-form";
 
@@ -51,9 +52,39 @@ const AuthForm = () => {
   return (
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
+        {/* Form */}
         <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-          <Input id="email" label="Email" register={register} />
+          {variant === "REGISTER" && (
+            <Input id="name" label="Name" register={register} errors={errors} />
+          )}
+          <Input id="email" label="Email" register={register} errors={errors} />
+          <Input
+            id="password"
+            label="Password"
+            register={register}
+            errors={errors}
+          />
+          <Button disabled={isLoading} fullWidth type="submit">
+            {variant === "LOGIN" ? "Sign in" : "Register"}
+          </Button>
         </form>
+
+        {/* Auth Options Divider */}
+        <div className="mt-6">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-white px-2 text-gray-500">Sign in with</span>
+            </div>
+          </div>
+
+          {/* Auth Options */}
+          <div className="mt-6 flex gap-2">
+            {/* Add Auth Social Buttons - 51:00*/}
+          </div>
+        </div>
       </div>
     </div>
   );
